@@ -2,26 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class DoorController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animator anim;
+    // Start is called before the first frame update
+    private Animator doorAnim;
+    private bool doorOpen = false;
     /*public GameObject openText;
 
     public AudioSource doorSound;*/
 
 
-    public bool inReach;
+    //public bool inReach;
 
-    RaycastHit hit;
+    //RaycastHit hit;
 
+    public AudioSource doorOpenAudio;
+    public AudioSource doorCloseAudio;
 
-
-    public Transform PlayerCamera;
+    /*public Transform PlayerCamera;
     [Header("MaxDistance you can open or close the door.")]
     public float MaxDistance = 5;
-
+*/
     private bool opened = false;
+
+    private void Awake()
+    {
+        doorAnim = GetComponent<Animator>();    
+    }
+
+    public void PlayAnimation()
+    {
+        if (!doorOpen)
+        {
+            doorAnim.Play("DoorOpen", 0, 0.0f);
+            doorOpenAudio.Play();
+            doorOpen = true;
+            //doorOpenAudio.time = 0.00f;
+            
+            //doorOpenAudio.SetScheduledEndTime(AudioSettings.dspTime + (0.00f - 1.00f));
+        }
+        else
+        {
+            doorAnim.Play("DoorClose", 0, 0.0f);
+            doorCloseAudio.Play();
+            doorOpen = false;
+            //doorOpenAudio.time = 0.90f;
+            
+            //doorOpenAudio.SetScheduledEndTime(AudioSettings.dspTime + (0.90f - 2.00f));
+        }
+    }
+
 
     void Start()
     {
@@ -58,16 +89,16 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.F))
+
+        /*if (Input.GetKeyDown(KeyCode.F))
         {
             Pressed();
             //Delete if you dont want Text in the Console saying that You Press F.
             Debug.Log("You Press F");
-        }
+        }*/
 
 
-        if (Physics.Raycast (transform.position, directionRay, out collisionRay, distanceRay) ) 
+        /*if (Physics.Raycast (transform.position, directionRay, out collisionRay, distanceRay) ) 
     {     
         if (collisionRay.collider.gameObject.tag == "Desired GameObject Tag" )
         {  

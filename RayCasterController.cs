@@ -10,13 +10,19 @@ using static UnityEditor.Progress;
 
 public class RayCasterController : MonoBehaviour
 {
+
+    public AudioSource stealAudio;
+
+    DoorController raycastedObj;
+    //ElevatorController ElevatorController;
+
     // Start is called before the first frame update
     Ray ray;
     public float distance = 1.0f;
     RaycastHit hit;
     public float rayDistance = 1.0f;
-    public string focusTagDoorR = "DoorR";
-    public string focusTagDoorL = "DoorL";
+    public string focusTagDoor = "Door";
+    //public string focusTagDoorL = "DoorL";
     public string focusTag1 = "Restaurant";
     public string focusTag2 = "Salon";
     public string focusTag3 = "TechCafe";
@@ -136,6 +142,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -158,6 +165,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -180,6 +188,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -202,6 +211,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -224,6 +234,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -246,6 +257,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -268,6 +280,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -290,6 +303,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -312,6 +326,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -334,6 +349,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -356,6 +372,7 @@ public class RayCasterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -379,6 +396,7 @@ public class RayCasterController : MonoBehaviour
                 {
                     
                     hit.collider.gameObject.SetActive(false);
+                    stealAudio.Play();
                     if (hit.collider.tag == tag1)
                     {
                         score1++;
@@ -393,16 +411,18 @@ public class RayCasterController : MonoBehaviour
                 }
             }
 
-            /*else if (hit.collider.tag == focusTagDoorR)
+            else if (hit.collider.tag == focusTagDoor)
             {
                 displayText.gameObject.SetActive(true);
                 displayText.text = "Press 'E' to open/close";
-
+                raycastedObj = hit.collider.gameObject.GetComponent<DoorController>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    GameObject DoorR = GameObject.FindGameObjectWithTag("DoorR");
+                    raycastedObj.PlayAnimation();
+
+                    /*GameObject DoorR = GameObject.FindGameObjectWithTag("DoorR");
                     boolObj = DoorR.GetComponent<Door>();
-                    boolObj.inReach = true;
+                    boolObj.inReach = true;*/
                     //hit.collider.gameObject.SetActive(false);
 
                     //Score++;
@@ -411,7 +431,7 @@ public class RayCasterController : MonoBehaviour
                 }
             }
 
-            else if (hit.collider.tag == focusTagDoorL)
+            /*else if (hit.collider.tag == focusTagDoorL)
             {
                 displayText.gameObject.SetActive(true);
                 displayText.text = "Press 'E' to open/close";
@@ -486,8 +506,8 @@ public class RayCasterController : MonoBehaviour
         scoreText2.text = "Steal " + randomNumber2 + " " + item2 + " from " + tag2;*/
         scoreText3.text = "Total items stolen: " + score1;
         scoreText4.text = "Total items stolen: " + score2;
-        Debug.Log(score1 + " and " + score2);
-        Debug.Log(randomNumber1 + " and " + randomNumber2);
+        /*Debug.Log(score1 + " and " + score2);
+        Debug.Log(randomNumber1 + " and " + randomNumber2);*/
 
     }
     /*void RandomObj()
